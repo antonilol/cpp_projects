@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ connect4.cpp -o connect4.out
