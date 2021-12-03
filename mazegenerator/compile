@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ mazegenerator.cpp -o mazegenerator.out
