@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "No name provided, usage: ./new <name>"
+	exit 1
+else
+	if [ -e "$1" ]; then
+		echo "$1 already exists, come up with another name"
+		exit 1
+	else
+		mkdir "$1"
+		cat template/template.cpp > "$1/$1.cpp"
+		sed "s/{NAME}/$1/g" template/compile > "$1/compile"
+	fi
+fi

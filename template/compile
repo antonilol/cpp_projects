@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ {NAME}.cpp -o {NAME}.out
