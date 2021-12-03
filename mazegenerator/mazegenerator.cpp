@@ -87,13 +87,18 @@ void print_maze() {
 
 	for (uint y = 0; y < h; y++) {
 		std::cout << "\n";
-		if (style == 0) {
-			std::cout << "|";
-		} else if (style == 1) {
-			std::cout << FULL_BLOCK;
-		} else if (style < 4) {
-			std::cout << get_char(0b10100 | (maze[y * w]) << 3 | (style == 3));
+		if (y + 1 == h) {
+			std::cout << (style == 1 ? "  " : " ");
+		} else {
+			if (style == 0) {
+				std::cout << "|";
+			} else if (style == 1) {
+				std::cout << FULL_BLOCK;
+			} else if (style < 4) {
+				std::cout << get_char(0b10100 | (maze[y * w]) << 3 | (style == 3));
+			}
 		}
+
 		for (uint x = 0; x < w; x++) {
 			if (maze[y * w + x]) {
 				if (style < 2) {
@@ -113,18 +118,23 @@ void print_maze() {
 				std::cout << (style < 2 || !(x & 1) ? "  " : " ");
 			}
 		}
-		if (style == 0) {
-			std::cout << '|';
-		} else if (style == 1) {
-			std::cout << FULL_BLOCK;
-		} else if (style < 4) {
-			std::cout << get_char(0b10100 | (maze[(y + 1) * w - 1]) << 1 | (style == 3));
+
+		if (y == 0) {
+			std::cout << (style == 1 ? "  " : " ");
+		} else {
+			if (style == 0) {
+				std::cout << '|';
+			} else if (style == 1) {
+				std::cout << FULL_BLOCK;
+			} else if (style < 4) {
+				std::cout << get_char(0b10100 | (maze[(y + 1) * w - 1]) << 1 | (style == 3));
+			}
 		}
 	}
 
 	std::cout << "\n";
 	if (style == 0) {
-		std::cout << std::string(w * 2, '-') << "+\n";
+		std::cout << '+' << std::string(w * 2, '-') << "+\n";
 	} else if (style == 1) {
 		std::cout << FULL_BLOCK FULL_BLOCK;
 		for (uint i = 0; i < w; i++) {
