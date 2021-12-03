@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ ! -e PerlinNoise ]]; then
+	git clone https://github.com/Reputeless/PerlinNoise.git || exit $?
+fi
+
+g++ rgb_perlin.cpp -o rgb_perlin.out
